@@ -11,21 +11,6 @@ import java.util.HashMap;
  */
 public class SieveOfEratosthenes {
 
-    /*
-    private static class PossiblePrime {
-        public BigInteger value;
-        public boolean isPrime;
-
-        public PossiblePrime(BigInteger value) {
-            this.value = value;
-            this.isPrime = true;
-        }
-
-        public void markNotPrime() {
-            this.isPrime = false;
-        }
-    }*/
-
    /*
     public void populateList(int num) {
         //Generate primes until you hit num primes found
@@ -38,8 +23,11 @@ public class SieveOfEratosthenes {
         }
     }*/
 
-    /*
-    */
+    /***
+     * Populate and return a HashMap of PossiblePrimes, where isPrime is correctly marked for each entry in the map
+     * @param upperBound - The number of values (inclusive) for which you will determine primality
+     * @return the HashMap
+     */
     public static HashMap<BigInteger,PossiblePrime> generatePrimes(BigInteger upperBound) {
         HashMap<BigInteger,PossiblePrime> possiblePrimes = new HashMap<BigInteger, PossiblePrime>();
 
@@ -84,9 +72,9 @@ public class SieveOfEratosthenes {
 
     }
 
-    public static void problem7(){
-        BigInteger i = new BigInteger("204729");
-        HashMap<BigInteger,PossiblePrime> results = generatePrimes(i);
+    public static void main(String[] args) {
+        BigInteger i = new BigInteger("7");
+        HashMap<BigInteger,PossiblePrime> results = SieveOfEratosthenes.generatePrimes(i);
 
         int num = 1;
         for (BigInteger z = new BigInteger("2");z.compareTo(new BigInteger("" + results.size())) < 0;z=z.add(BigInteger.ONE)) {
@@ -97,74 +85,8 @@ public class SieveOfEratosthenes {
             }
 
         }
-
-    }
-
-    public static void main(String[] args) {
-        //Is x a factor of y?
-        problem3();
-    }
-
-    private static void problem10() {
-        BigInteger i= new BigInteger("2000000");
-
-        HashMap<BigInteger,PossiblePrime> results = generatePrimes(i);
-
-        BigInteger sum = new BigInteger("0");
-        for (BigInteger z = new BigInteger("2");z.compareTo(new BigInteger("" + results.size())) < 0;z=z.add(BigInteger.ONE)) {
-            PossiblePrime pp = results.get(z);
-            if (pp != null && pp.isPrime) {
-                sum = sum.add(pp.value);
-            }
-        }
-
-        System.out.println("Sum of primes below " + i + ":" + sum);
-
-    }
-
-    private static void problem3(){
-        /*
-        BigInteger i = new BigInteger("600851475143");
-        HashMap<BigInteger,PossiblePrime> results = generatePrimes(i);
-        System.out.println("Done generating primes up to " + i.toString());
-
-        for(BigInteger j = new BigInteger("" + results.size());j.compareTo(BigInteger.ZERO) > 0;j = j.subtract(BigInteger.ONE)){
-            PossiblePrime pp = results.get(j);
-            if (pp != null && pp.isPrime){
-                BigInteger possibleFactor = pp.value;
-                //If i mod possiblePrime is 0, it is a factor
-                if (i.mod(possibleFactor).compareTo(BigInteger.ZERO) == 0){
-                    System.out.println("Found largest prime factor: " + possibleFactor.toString());
-                }
-            }
-        }  */
-
-        BigInteger num = new BigInteger("600851475143");
-
-        for(BigInteger i = new BigInteger(num.toString()).subtract(BigInteger.ONE); i.compareTo(BigInteger.ONE) >= 0; i = i.subtract(BigInteger.ONE)){
-            if (isFactor(i,num)){
-                System.out.println("Testing factor " + i + " for primality");
-                if(isPrime(i)){
-                    System.out.println("Largest prime factor" + i);
-                    break;
-                }
-            }
-        }
     }
 
 
-    private static boolean isPrime(BigInteger i) {
-        for (BigInteger j = i.subtract(BigInteger.ONE); j.compareTo(BigInteger.ONE) > 0; j = j.subtract(BigInteger.ONE)){
-            if (isFactor(j,i)){
-                return false;
-            }
-        }
-        return true;
-    }
-
-    //Is x a factor of y?
-    private static boolean isFactor(BigInteger i, BigInteger num) {
-        return num.mod(i).compareTo(BigInteger.ZERO) == 0;
-    }
 
 }
