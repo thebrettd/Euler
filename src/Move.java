@@ -6,10 +6,16 @@
  * To change this template use File | Settings | File Templates.
  */
 public class Move {
+    int oldRank;
+    int oldFile;
+
     int newRank;
     int newFile;
 
-    public Move(int newRank, int newFile) {
+    public Move(int oldRank, int oldFile, int newRank, int newFile) {
+        this.oldRank = oldRank;
+        this.oldFile = oldFile;
+
         this.newRank = newRank;
         this.newFile = newFile;
     }

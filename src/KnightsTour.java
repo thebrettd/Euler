@@ -14,7 +14,7 @@ public class KnightsTour {
 
     public KnightsTour(int numRanksAndCols) {
         this.moves = new ArrayList<Move>();
-        this.board = new Board(numRanksAndCols,numRanksAndCols);
+        this.board = new Board(numRanksAndCols, numRanksAndCols);
         this.board.getBoardArray()[0][0] = true;
     }
 
@@ -25,7 +25,7 @@ public class KnightsTour {
         KnightsTour kt = new KnightsTour(5);
         kt.findKnightsTour(k);
 
-        Board cleanBoard = new Board(5,5);
+        Board cleanBoard = new Board(5, 5);
         int moveNum = 1;
         for (Move move : kt.moves) {
             System.out.println("Move: " + moveNum);
@@ -36,52 +36,52 @@ public class KnightsTour {
     }
 
     private boolean findKnightsTour(Knight knight) {
-        if (this.board.getNumMoves() == this.board.getNumRanks() * this.board.getNumFiles() ) {
-            //moves.add(m);
+        if (this.board.getNumMoves() == this.board.getNumRanks() * this.board.getNumFiles()) {
             System.out.println("Solved!!");
             return true;
         } else {
             ArrayList<Move> allValidMoves = knight.getAllValidMoves(this.board);
-            if (allValidMoves.size() > 0) {
-                //If valid move exists
-                for (Move vm : allValidMoves) {
-                    int oldRank = knight.rank;
-                    int oldFile = knight.file;
+            for (Move move : allValidMoves) {
+                int oldRank = knight.rank;
+                int oldFile = knight.file;
 
-                    //Move the knight
-                    //System.out.println("Trying a move");
-                    doMove(this.board, knight, vm);
+                //Move the knight
+                //System.out.println("Trying a move");
+                doMove(this.board, knight, move);
 
-                    if (findKnightsTour(knight)) {
-                        this.moves.add(vm);
-                        doMove(this.board,knight,vm);
-                        return true;
-                    }
-                    undoMove(this.board,knight,vm,oldRank,oldFile);
+                if (findKnightsTour(knight)) {
+                    this.moves.add(move);
+                    doMove(this.board, knight, move);
+                    return true;
                 }
-            }else{
-                return false;
+                undoMove(this.board, knight, move);
             }
         }
 
-        //System.out.println("Could not find solution for given starting position");
+        //No valid moves or they did not lead to a solution
         return false;
     }
 
-    private static void undoMove(Board b, Knight knight, Move m, int oldRank, int oldFile) {
+    private static void undoMove(Board b, Knight knight, Move m) {
         //System.out.println("Got stuck, undoing move: " + b.getNumMoves());
 
-        knight.rank = oldRank;
-        knight.file = oldFile;
+        //Move the knight back
+        knight.rank = m.oldRank;
+        knight.file = m.oldFile;
+        //Unmark the square
         b.getBoardArray()[m.newRank][m.newFile] = false;
+        //Decrease move count
         b.decrementMoves();
         //b.printBoard(knight);
     }
 
     private static void doMove(Board b, Knight knight, Move m) {
+        //Move the knight
         knight.rank = m.newRank;
         knight.file = m.newFile;
+        //Mark the square
         b.getBoardArray()[knight.rank][knight.file] = true;
+        //Increase move count
         b.incrementMoves();
         //b.printBoard(knight);
     }

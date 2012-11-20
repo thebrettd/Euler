@@ -38,42 +38,42 @@ public class Knight {
 
         // right one, up 2
         if (this.rank+1 < b.getNumRanks() && this.file+2 < b.getNumFiles()){
-            moves.add(new Move(this.rank+1, this.file+2));
+            moves.add(new Move(this.rank,this.file, this.rank+1, this.file+2));
         }
 
         //left one, up 2
         if (this.rank-1 >= 0 && this.file+2 < b.getNumFiles()){
-            moves.add(new Move(this.rank-1,this.file+2));
+            moves.add(new Move(this.rank,this.file, this.rank-1,this.file+2));
         }
 
         //right one,down 2
         if (this.rank+1 < b.getNumRanks() && this.file-2 >=0){
-            moves.add(new Move(this.rank+1,this.file-2));
+            moves.add(new Move(this.rank,this.file, this.rank+1,this.file-2));
         }
 
         //left one,down 2
         if (this.rank-1 >=0 && this.file-2 >= 0){
-            moves.add(new Move(this.rank-1,this.file-2));
+            moves.add(new Move(this.rank,this.file, this.rank-1,this.file-2));
         }
 
         //right 2 up one
         if (this.rank+2 < b.getNumRanks() && this.file+1 < b.getNumFiles()){
-            moves.add(new Move(this.rank+2,this.file+1));
+            moves.add(new Move(this.rank,this.file, this.rank+2,this.file+1));
         }
 
         //right 2 down one
         if (this.rank+2 < b.getNumRanks() && this.file-1 >= 0){
-            moves.add(new Move(this.rank+2,this.file-1));
+            moves.add(new Move(this.rank,this.file, this.rank+2,this.file-1));
         }
 
         //left 2 up one
         if (this.rank-2 >= 0 && this.file+1 < b.getNumFiles()){
-            moves.add(new Move(this.rank-2,this.file+1));
+            moves.add(new Move(this.rank,this.file, this.rank-2,this.file+1));
         }
 
         //left 2 down one
         if (this.rank-2 >=0 && this.file-1 >=0){
-            moves.add(new Move(this.rank-2,this.file-1));
+            moves.add(new Move(this.rank,this.file, this.rank-2,this.file-1));
         }
 
         return moves;
