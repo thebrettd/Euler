@@ -42,8 +42,6 @@ public class KnightsTour {
         } else {
             ArrayList<Move> allValidMoves = knight.getAllValidMoves(this.board);
             for (Move move : allValidMoves) {
-                int oldRank = knight.rank;
-                int oldFile = knight.file;
 
                 //Move the knight
                 //System.out.println("Trying a move");
@@ -53,8 +51,9 @@ public class KnightsTour {
                     this.moves.add(move);
                     doMove(this.board, knight, move);
                     return true;
+                }else{
+                    undoMove(this.board, knight, move);
                 }
-                undoMove(this.board, knight, move);
             }
         }
 
