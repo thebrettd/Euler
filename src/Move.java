@@ -19,4 +19,12 @@ public class Move {
         this.newRank = newRank;
         this.newFile = newFile;
     }
+
+    public Move(int newRank, int newFile) {
+        this.oldRank = -1;
+        this.oldFile = -1;
+
+        this.newRank = newRank;
+        this.newFile = newFile;
+    }
 }
