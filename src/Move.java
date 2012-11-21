@@ -27,4 +27,8 @@ public class Move {
         this.newRank = newRank;
         this.newFile = newFile;
     }
+
+    public void print(){
+        System.out.println("Moving from rank/file: " + this.oldRank + "/" + this.oldFile + " to " + this.newRank + "/" + this.newFile);
+    }
 }

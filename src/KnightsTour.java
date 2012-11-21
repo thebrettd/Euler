@@ -5,7 +5,6 @@ import java.util.ArrayList;
  * User: brett
  * Date: 11/18/12
  * Time: 7:01 PM
- * To change this template use File | Settings | File Templates.
  */
 public class KnightsTour {
 
@@ -32,14 +31,15 @@ public class KnightsTour {
         kt.findKnightsTour();
 
         Board cleanBoard = new Board(5, 5);
-        /*
+
         int moveNum = 1;
         for (Move move : kt.moves) {
             System.out.println("Move: " + moveNum);
-            doMove(cleanBoard, k, move);
-            cleanBoard.printBoard(k);
+            //doMove(cleanBoard, k, move);
+            //cleanBoard.printBoard(k);
+            move.print();
             moveNum++;
-        }*/
+        }
     }
 
     private boolean findKnightsTour() {
