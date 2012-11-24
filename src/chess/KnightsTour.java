@@ -28,11 +28,11 @@ public class KnightsTour {
         Move startingMove = new Move(this.knight, new ChessCoordinate(startingRank,startingFile));
         knight.doMove(startingMove);
         this.moves.add(startingMove);
+        this.board.getBoardArray()[startingMove.newPosition.rank][startingMove.newPosition.file] = true;
 
     }
 
     public void printMovesList(){
-        System.out.println("Current moves list: ");
         for (Move move : this.moves) {
             move.print();
         }
@@ -43,18 +43,8 @@ public class KnightsTour {
         KnightsTour kt = new KnightsTour(5, Integer.parseInt(args[0]), Integer.parseInt(args[1]));
 
         kt.findKnightsTour();
+        kt.printMovesList();
 
-        Board cleanBoard = new Board(5, 5);
-
-        System.out.println("Printing solution");
-        int moveNum = 1;
-        for (Move move : kt.moves) {
-            System.out.println("Move: " + moveNum);
-            //kt.knight.doMove(move);
-            move.print();
-            //cleanBoard.printBoard(kt.knight);
-            moveNum++;
-        }
     }
 
     public boolean findKnightsTour() {
@@ -69,7 +59,6 @@ public class KnightsTour {
                 Move move = new Move(knight,knight.position, newPosition);
 
                 this.moves.add(move);
-                //printMovesList();
 
                 //Update the knights position
                 knight.doMove(move);
@@ -77,22 +66,16 @@ public class KnightsTour {
                 //Mark the square as visited on the board
                 this.board.getBoardArray()[move.newPosition.rank][move.newPosition.file] = true;
 
-                //b.printBoard(knight);
-
                 //If this new configurations leads to a solution, return true, otherwise undo it
                 if (findKnightsTour()){
                     return true;
                 }else{
                     moves.remove(move);
                     //System.out.println("Got stuck, remove move: " + move);
-
-                    //printMovesList();
                     knight.undoMove(move);
 
                     //Unmark the square
                     this.board.getBoardArray()[move.newPosition.rank][move.newPosition.file] = false;
-
-                    //b.printBoard(knight);
                 }
             }
         }
