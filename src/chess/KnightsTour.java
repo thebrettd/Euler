@@ -28,8 +28,7 @@ public class KnightsTour {
         Move startingMove = new Move(this.knight, new ChessCoordinate(startingRank,startingFile));
         knight.doMove(startingMove);
         this.moves.add(startingMove);
-        this.board.getBoardArray()[startingMove.newPosition.rank][startingMove.newPosition.file] = true;
-
+        this.board.markVisitied(startingMove.newPosition);
     }
 
     public void printMovesList(){
@@ -64,7 +63,7 @@ public class KnightsTour {
                 knight.doMove(move);
 
                 //Mark the square as visited on the board
-                this.board.getBoardArray()[move.newPosition.rank][move.newPosition.file] = true;
+                board.markVisitied(move.newPosition);
 
                 //If this new configurations leads to a solution, return true, otherwise undo it
                 if (findKnightsTour()){
@@ -75,7 +74,7 @@ public class KnightsTour {
                     knight.undoMove(move);
 
                     //Unmark the square
-                    this.board.getBoardArray()[move.newPosition.rank][move.newPosition.file] = false;
+                    board.markUnvisitied(move.newPosition);
                 }
             }
         }

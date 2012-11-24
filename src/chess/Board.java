@@ -36,6 +36,14 @@ public class Board {
         return boardArray[coord.rank][coord.file];
     }
 
+    public void markVisitied(ChessCoordinate coord){
+        boardArray[coord.rank][coord.file] = true;
+    }
+
+    public void markUnvisitied(ChessCoordinate coord){
+        boardArray[coord.rank][coord.file] = false;
+    }
+
     public void printBoard(Knight k) {
 
         for (int rank = 0; rank < this.numRanks ; rank++) {
