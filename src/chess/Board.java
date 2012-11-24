@@ -1,3 +1,5 @@
+package chess;
+
 /**
  * Created with IntelliJ IDEA.
  * User: brett
@@ -25,15 +27,21 @@ public class Board {
         }
     }
 
-    public boolean hasBeenVisited(Move move) {
-        return boardArray[move.newRank][move.newFile];
+    /***
+     *
+     * @param coord The coordinate which you
+     * @return return the boolean value found in the boardArray. True indicates the location has been visited
+     */
+    public boolean hasBeenVisited(ChessCoordinate coord) {
+        return boardArray[coord.rank][coord.file];
     }
 
     public void printBoard(Knight k) {
+
         for (int rank = 0; rank < this.numRanks ; rank++) {
             for (int file = 0; file < this.numFiles; file++) {
                 System.out.print("[");
-                char charToPrint = (k.rank == rank && k.file == file) ? 'K' : (boardArray[rank][file] ? 'x' : ' ');
+                String charToPrint = (k.position.rank == rank && k.position.file == file) ? k.toString() : (boardArray[rank][file] ? "x" : " ");
                 //System.out.print(boardArray[i][j] ? 'x' : ' ');
                 System.out.print(charToPrint);
                 System.out.print("]");
