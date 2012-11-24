@@ -26,7 +26,8 @@ public class KnightsTour {
         //Create a knight and a starting "move" to place the knight on the board
         this.knight = new Knight(new ChessCoordinate(-1,-1));
         Move startingMove = new Move(this.knight, new ChessCoordinate(startingRank,startingFile));
-        doMove(board,knight,startingMove);
+        knight.doMove(startingMove);
+        this.moves.add(startingMove);
 
     }
 
@@ -54,7 +55,6 @@ public class KnightsTour {
             //cleanBoard.printBoard(kt.knight);
             moveNum++;
         }
-
     }
 
     public boolean findKnightsTour() {
@@ -68,9 +68,7 @@ public class KnightsTour {
                 //System.out.println("Trying a move");
                 Move move = new Move(knight,knight.position, newPosition);
 
-                //System.out.println("Adding move: " + move);
                 this.moves.add(move);
-
                 //printMovesList();
 
                 //Update the knights position
@@ -91,9 +89,6 @@ public class KnightsTour {
                     //printMovesList();
                     knight.undoMove(move);
 
-                    //move the knight back
-
-
                     //Unmark the square
                     this.board.getBoardArray()[move.newPosition.rank][move.newPosition.file] = false;
 
@@ -104,38 +99,6 @@ public class KnightsTour {
 
         //No valid moves or they did not lead to a solution
         return false;
-    }
-
-    private void undoMove(Board b, Knight knight, Move move) {
-        Move m = this.moves.get(this.moves.indexOf(move));
-        moves.remove(move);
-        //System.out.println("Got stuck, remove move: " + m);
-
-        //printMovesList();
-
-        //move the knight back
-        knight.doMove(m);
-
-        //Unmark the square
-        b.getBoardArray()[move.newPosition.rank][move.newPosition.file] = false;
-
-        //b.printBoard(knight);
-    }
-
-    private void doMove(Board b, Knight knight, Move move) {
-        //System.out.println("Adding move: " + move);
-        //Add the move to the list of moves
-        this.moves.add(move);
-
-        //printMovesList();
-
-        //Update the knights position
-        knight.doMove(move);
-
-        //Mark the square as visited on the board
-        b.getBoardArray()[knight.position.rank][knight.position.file] = true;
-
-        //b.printBoard(knight);
     }
 }
 
