@@ -32,8 +32,10 @@ public class Problem3 {
         }
     }
 
-    //Loop backwards from n-1 and determine if it is a factor, if so, determine if it is prime
-    //Takes too long to determine is BigInteger is prime with naive division
+    /**
+     * Loop backwards from n-1 and determine if it is a factor, if so, determine if it is prime
+     * Takes too long to determine is BigInteger is prime with naive division
+     */
     private static void try2(BigInteger num) {
 
         for (BigInteger i = new BigInteger(num.toString()).subtract(BigInteger.ONE); i.compareTo(BigInteger.ONE) >= 0; i = i.subtract(BigInteger.ONE)) {
@@ -81,9 +83,17 @@ public class Problem3 {
         }
     }
 
-    //Recursive algorithm described on http://www.mathsisfun.com/prime-factorization.html
-    //Divide currNum by successive primes until you find a factor.
-    //Add that currNum to the list of primes factors, then recurse using quotient of currNum and the factor as currNum
+    /**
+     *
+     * Recursive algorithm described on http://www.mathsisfun.com/prime-factorization.html
+     * Divide currNum by successive primes until you find a factor.
+     * Add that currNum to the list of primes factors, then recurse using quotient of currNum and the factor as currNum
+     *
+     * @param num
+     * @param primeFactors
+     * @param allPrimesList
+     */
+
     private static void primeFactorize(BigInteger num, ArrayList<BigInteger> primeFactors, HashMap<BigInteger, PossiblePrime> allPrimesList) {
         //Lookup the current number in the list of primes.
         PossiblePrime currPossiblePrime = allPrimesList.get(num);
