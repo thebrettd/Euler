@@ -40,9 +40,9 @@ public class Problem11 {
     private void loadProblemArray() {
         StringTokenizer st = new StringTokenizer(data());
 
-        for(int i=0;i<20;i++){
-            for(int j=0;j<20;j++){
-                problemArray[j][i] = Integer.parseInt(st.nextToken());
+        for(int y=0;y<20;y++){
+            for(int x=0;x<20;x++){
+                problemArray[x][y] = Integer.parseInt(st.nextToken());
             }
         }
         System.out.println("problemArray loaded");
