@@ -1,11 +1,18 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CollatzSequence {
+
+    private static HashMap<Integer, ArrayList<Integer>> collatzSequences = new HashMap<Integer, ArrayList<Integer>>();
 
     public static ArrayList<Integer> generateCollatzSequence(int i) {
         ArrayList<Integer> seq = new ArrayList<Integer>();
         seq.add(i);
+
         collatzSequenceHelper(i,seq);
+
+        collatzSequences.put(i,seq);
+
         return seq;
     }
 
@@ -15,11 +22,19 @@ public class CollatzSequence {
         }
         else if (i % 2 == 0){
             int newNum = i / 2;
-            seq.add(newNum);
-            collatzSequenceHelper(newNum,seq);
+            recurseOrLookup(seq,newNum);
         }else{
             int newNum = 3 * i + 1;
-            seq.add(newNum);
+            recurseOrLookup(seq,newNum);
+        }
+    }
+
+    private static void recurseOrLookup(ArrayList<Integer> seq, int newNum) {
+        seq.add(newNum);
+        if (collatzSequences.containsKey(newNum)){
+            seq.addAll(collatzSequences.get(newNum));
+        }
+        else{
             collatzSequenceHelper(newNum,seq);
         }
     }
