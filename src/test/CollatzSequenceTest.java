@@ -22,7 +22,7 @@ public class CollatzSequenceTest {
         ArrayList<Integer> seq = CollatzSequence.generateCollatzSequence(13);
         assert (seq.size() == 10);
 
-        for (int i=0;i<10;i++){
+        for (int i=0;i<answer.size();i++){
             assert (seq.get(i).equals(answer.get(i)));
         }
     }

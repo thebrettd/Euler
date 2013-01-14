@@ -6,8 +6,9 @@ public class Problem14 {
 
         int currLongestChainValue = 0;
         int currLongestChainLength = 0;
-        for (int i=1; i<9999999;i++){
+        for (int i=1; i<200000;i++){
             ArrayList<Integer> seq = CollatzSequence.generateCollatzSequence(i);
+            System.out.println("Computed sequence: " + i);
 
             if (seq.size() > currLongestChainLength){
                 currLongestChainValue = i;
