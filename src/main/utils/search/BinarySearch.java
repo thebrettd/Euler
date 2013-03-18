@@ -1,3 +1,5 @@
+package utils.search;
+
 import com.sun.xml.internal.bind.v2.model.core.TypeRef;
 
 /**
@@ -9,36 +11,21 @@ import com.sun.xml.internal.bind.v2.model.core.TypeRef;
  */
 public class BinarySearch {
 
-    public static void main(String[] args){
-
-        int[] array = new int[10];
-
-        array[0] = 5;
-        array[1] = 13;
-        array[2] = 45;
-        array[3] = 125;
-        array[4] = 2356;
-        array[5] = 38865;
-        array[6] = 245642;
-        array[7] = 375347;
-        array[8] = 6976979;
-        array[9] = 7898989;
-
-        int target = 1;
-
-        try{
-            System.out.println("Found index: " + binarySearch(array,target));
-        } catch (IllegalStateException e){
-            System.out.println("Could not find value in array!");
-        }
-    }
-
     public static int binarySearch(int[] array, int target){
         return binarySearch(array,0,array.length-1,target);
     }
 
+    /***
+     *
+     * @param array The array you are searching through
+     * @param lower The index of the lower starting position
+     * @param upper The index of upper starting position
+     * @param target the value you are searching for
+     * @return the index of target in array
+     */
     private static int binarySearch( int[] array, int lower, int upper, int target){
-        int midPoint = (lower + upper) / 2 + 1;
+        int length = (upper - lower + 1);
+        int midPoint = (length / 2) + lower;
         int currVal = array[midPoint];
 
         if (currVal == target)
