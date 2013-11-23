@@ -1,7 +1,5 @@
 package utils.search;
 
-import com.sun.xml.internal.bind.v2.model.core.TypeRef;
-
 /**
  * Created with IntelliJ IDEA.
  * User: brett

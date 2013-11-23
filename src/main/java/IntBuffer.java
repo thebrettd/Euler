@@ -1,5 +1,3 @@
-package main.java;
-
 /**
  * Created with IntelliJ IDEA.
  * User: brett

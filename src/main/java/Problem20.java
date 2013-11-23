@@ -1,5 +1,3 @@
-package main.java;
-
 import utils.BigIntUtils;
 import utils.FactorialUtils;
 
