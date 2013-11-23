@@ -1,10 +1,10 @@
 package chess;
 
-import junit.framework.TestCase;
 import org.junit.Before;
-import org.junit.BeforeClass;
 
 import java.util.ArrayList;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * Time: 8:18 PM
  * To change this template use File | Settings | File Templates.
  */
-public class KnightsTourTest extends TestCase {
+public class KnightsTourTest {
 
     public KnightsTour kt;
 

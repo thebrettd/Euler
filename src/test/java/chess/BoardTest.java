@@ -1,6 +1,7 @@
 package chess;
 
-import junit.framework.TestCase;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created with IntelliJ IDEA.
@@ -9,7 +10,7 @@ import junit.framework.TestCase;
  * Time: 6:11 PM
  * To change this template use File | Settings | File Templates.
  */
-public class BoardTest extends TestCase {
+public class BoardTest{
 
     public void testHasBeenVisited() throws Exception {
         Board b = new Board(7,7);
